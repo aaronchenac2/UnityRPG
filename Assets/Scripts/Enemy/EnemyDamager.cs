@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyDamager : MonoBehaviour {
     public Enemy enemy;
-    bool damaged;
+    public bool damaged;
     float attackCD;
 
     private void Start()
@@ -21,6 +21,7 @@ public class EnemyDamager : MonoBehaviour {
             Stats playerStats = other.GetComponent<Stats>();
             //                 percent basehp + level              armor becomes weaker as hp decreases                                               // deals more dmg if enemy is higher lvl              
             playerStats.HP -= (playerStats.baseHP / 10 + enemy.level) * (1.2f - (playerStats.Armor / playerStats.level * playerStats.hp / playerStats.maxHp)) * (enemy.level / playerStats.level);
+            StartCoroutine(Restance());
         }
     }
 
